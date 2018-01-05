@@ -25,6 +25,11 @@ header{
     font-size: 45px;
 }
 
+#maps{
+    width: 100%;
+    height: 300px;
+}
+
 #headerIcon{
     font-size: 25px;
     color: #000;
