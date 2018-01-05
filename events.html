@@ -14,6 +14,7 @@
 		<script src="js/jquery-2.1.0.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script src="js/index.js"></script>
+		<script src="js/freelanceZ.js"></script>
 		<title>Okan Mekatronik</title>
 	</head>
 	<body>
@@ -32,24 +33,21 @@
 			</header>
 
 			<section>
-				<ul data-role="listview" data-inset="true">
-					<li><a href="#">
-							<img src="img/logo.png">
-							<h2>Broken Bells</h2>
-							<p>Broken Bells</p></a>
-					</li>
-					<li><a href="#">
-							<img src="img/Robokanonsekiz.png">
-							<h2>Warning</h2>
-							<p>Hot Chip</p></a>
-					</li>
-					<li><a href="#">
-							<img src="img/Robokanonsekiz.png">
-							<h2>Wolfgang Amadeus Phoenix</h2>
-							<p>Phoenix</p></a>
-					</li>
-				</ul>
+				<div class="full" id="actionsfeed">
+
+				</div>
 			</section>
+
+			<script>
+                $(function() {
+                    $.getJSON("https://api.mekatrotekno.com/events/fetch", function(result){
+                        result = result.reverse();
+                        $.each(result, function(ii, fieldd){
+							$("#actionsfeed").append('<div class="row" style="border-bottom: 1px solid #ddd;"> <div class="col-3-sm"> <img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+fieldd.image+'.png" alt=""> </div> <div class="col-9-sm"> <h2>'+fieldd.title+'</h2> <p>'+fieldd.text+'</p> <p><br><b>Etkinlik Yeri:</b> '+fieldd.place+'</p> <p><br><b>Etkinlik Bitişi: </b>'+fieldd.registration_end+'</p> </div> </div>');
+                        });
+                    });
+                });
+			</script>
 		</div>
 
 		<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">

@@ -37,6 +37,15 @@
 					<!-- News Feed -->
 				</div>
 			</section>
+			<script>
+                $(function() {
+                    $.getJSON("https://api.mekatrotekno.com/announcements", function(result){
+                        $.each(result, function(i, field){
+                            $("#newsfeed").append(' <div class="row bos35" id="' +field.id+ '"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/' + field.image + '.png" alt=""> <p>' + field.title + '</p> </div> </div> </div> </div>');
+                        });
+                    });
+                });
+			</script>
 		</div>
 
 		<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">

@@ -1,34 +1,20 @@
-function loadDoc() {
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange=function() {
-        if (this.readyState == 4 && this.status == 200) {
-            //document.getElementById("demo").innerHTML = this.responseText;
-            var myArr = JSON.parse(this.responseText);
-            myFunction(myArr);
-        }
-    };
-    xhttp.open("GET", "https://api.mekatrotekno.com/announcements", true);
-    xhttp.send();
-    function myFunction(arr) {
-        var out = "";
-        var i;
-        for(i = 0; i < arr.length; i++) {
-            //out +=  "<div class='row back' id='" + arr[i].id + "'>  <span>" + arr[i].title + "</span>   </div> <div class='bos25'></div>";
-            out += '<div class="row bos35" id="'+ arr[i].id +'"> ' +
-                '<div class="col-12"> ' +
-                '<div class="borderRadius" > ' +
-                '<div class="img"> ' +
-                ' <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/' + arr[i].image + '.png" alt=""> ' +
-                ' <p>'+ arr[i].title +'</p> ' +
-                '</div> ' +
-                '</div> ' +
-                '</div> ' +
-                '</div> ';
+/*
+$(function() {
+    $.getJSON("https://api.mekatrotekno.com/announcements", function(result){
+        $.each(result, function(i, field){
+            $("#newsfeed").append(' <div class="row bos35" id="' +field.id+ '"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/' + field.image + '.png" alt=""> <p>' + field.title + '</p> </div> </div> </div> </div>');
+        });
+    });
+});
 
-        }
-        document.getElementById("newsfeed").innerHTML = out;
-    }
-}
+$(function() {
+                    $.getJSON("https://api.mekatrotekno.com/events/fetch", function(result){
+                        result = result.reverse();
+                        $.each(result, function(ii, fieldd){
+							$("#actionsfeed").append('<div class="row" style="border-bottom: 1px solid #ddd;"> <div class="col-3-sm"> <img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+fieldd.image+'.png" alt=""> </div> <div class="col-9-sm"> <h2>'+fieldd.title+'</h2> <p>'+fieldd.text+'</p> <p><br><b>Etkinlik Yeri:</b> '+fieldd.place+'</p> <p><br><b>Etkinlik Bitişi: </b>'+fieldd.registration_end+'</p> </div> </div>');
+                        });
+                    });
+                });
 
-loadDoc();
+*/
