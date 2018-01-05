@@ -41,6 +41,14 @@ header{
 	margin-bottom: 35px;
 }
 
+.bos35pt{
+    padding-top: 35px;
+}
+
+.bos35pb{
+    padding-bottom: 35px;
+}
+
 .borderRadius{
     width: 100%;
     height: 65vh;
@@ -96,4 +104,18 @@ footer{
 .iconAciklama{
     font-size: 12px;
     padding-top: 5px;
+}
+
+.logo-mmyaccount{
+    width: 75px;
+}
+
+.myaccount-name{
+    padding-top: 25px;
+}
+
+.myaccount-row{
+    padding-bottom: 30px;
+    color: #535353;
+    width: 100%;
 }
