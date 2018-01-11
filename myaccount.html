@@ -14,6 +14,7 @@
 		<script src="js/jquery-2.1.0.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script src="js/index.js"></script>
+		<script src="js/qr.js"></script>
 		<title>Okan Mekatronik</title>
 
 		<meta name="apple-mobile-web-app-title" content="OMK Android">
@@ -37,14 +38,56 @@
 			</header>
 
 			<article>
-				<section>
+
+				<section id="loginPage">
+					<div class="full">
+						<div class="row bos35pt">
+								<div class="col-12">
+									<p style="font-size: 12px;">
+										Username
+									</p>
+									<input type="text" name="username" id="usernameLogin" placeholder="Username">
+								</div>
+								<div class="col-12">
+									<p style="font-size: 12px;">
+										Password
+									</p>
+									<input type="password" name="password" id="passwordLogin" placeholder="Password">
+								</div>
+								<div class="col-12">
+									<button name="Login" id="LoginButton">Login</button>
+								</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="loginRegister">
+					<div class="full">
+						<div class="row bos35pt">
+							<center>
+								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
+									<a href="#" id="login">
+										Login
+									</a>
+								</p>
+								<p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
+									<a href="#" id="register">
+										Register
+									</a>
+								</p>
+							</center>
+						</div>
+					</div>
+				</section>
+
+				<section id="user">
 					<div class="full">
 						<div class="row bos35pt" style="border-bottom: 1px solid #ddd;">
 							<div class="col-3-sm">
 								<img class="logo-mmyaccount" src="img/logo.png" alt="">
 							</div>
 							<div class="col-9-sm">
-								<p class="myaccount-name">Muhammed Zaim</p>
+								<p class="myaccount-name" id="fullname" style="text-transform: capitalize;"></p>
 							</div>
 						</div>
 
@@ -53,15 +96,36 @@
 								<p>Kullanıcı Adı: </p>
 							</div>
 							<div class="col-9-sm">
-								<p style="text-align: right">muhammedzaimtr</p>
+								<p style="text-align: right" id="username"></p>
 							</div>
 						</div>
 						<div class="row" style="border-bottom: 1px solid #ddd;">
 							<div class="col-3-sm">
 								<p>İsim: </p>
 							</div>
-							<div class="col-9-sm">
-								<p style="text-align: right">Muhammed Zaim</p>
+							<div class="col-9-sm" style="text-transform: capitalize;">
+								<p style="text-align: right" id="fullname2"></p>
+							</div>
+						</div>
+						<div class="row" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
+							<div class="col-10-sm">
+								<p>
+									<a href="#" id="generate">
+										&nbsp; QR Code
+									</a>
+								</p>
+							</div>
+							<div class="col-2-sm" id="closeQR" style="display: none">
+								<i style="font-size: 20px;" class="fa fa-close"></i>
+							</div>
+
+						</div>
+
+						<div class="row" id="qr" style="display: none;">
+							<div class="col-12">
+								<center>
+									<div id="qrcode"></div>
+								</center>
 							</div>
 						</div>
 
@@ -78,7 +142,7 @@
 									</a>
 								</p>
 								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;padding-top: 15px; padding-bottom: 15px;">
-									<a href="">
+									<a href="" id="Hakkinda">
 										Hakkında
 									</a>
 								</p>
@@ -98,7 +162,7 @@
 									</a>
 								</p>
 								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;padding-top: 15px; padding-bottom: 15px;">
-									<a href="">
+									<a href="" id="Cikis">
 										Çıkış Yap
 									</a>
 								</p>
@@ -107,23 +171,153 @@
 
 						<div class="bos35pt"></div>
 
-						<div class="row">
-							<p style="font-size: 12px;">
-								Actions
-							</p>
-							<center>
-								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;padding-top: 15px; padding-bottom: 15px;">
-									<a style="color: #ff0000;" href="">
-										Hesabımı Sil
-									</a>
-								</p>
-							</center>
-						</div>
 
-					</div>
 				</section>
 			</article>
 		</div>
+
+		<script>
+            $(document).ready(function(){
+
+                $("#RegisterButton").click(function(){
+                    var username2 = $('#usernameRegister').val();
+                    var password2 = $('#passwordRegister').val();
+                    var fullname2 = $('#fullnameRegister').val();
+                    var phone2 = $('#phoneRegister').val();
+                    var email2 = $('#emailRegister').val();
+                    $.post("https://api.mekatrotekno.com/login/newUser",
+                        {
+                            username: username2,
+                            password: password2,
+                            fullname: fullname2,
+							phone: phone2,
+                            email: email2
+
+                        },
+                        function(data3,status){
+                            console.log(data3);
+                            console.log(status + " Token");
+                            //localStorage.setItem("loginData", JSON.stringify(data));
+                            //localStorage.setItem("token", JSON.stringify(data["token"]["token"]));
+
+                        });
+                    //var token = JSON.parse(localStorage.getItem("token"));
+
+                    //var okeyy = "blabla";
+					/*
+                    setTimeout(function(){// wait for 5 secs(2)
+                        location.reload(); // then reload the page.(3)
+                    }, 1000);
+                    */
+                });
+
+
+
+                var OKEY = JSON.parse(localStorage.getItem("token"));
+
+                if (OKEY == null){
+
+                    $("#loginRegister").show();
+                    $("#user").hide();
+
+                    $("#login").click(function () {
+                        $("#registerPage").hide();
+                        $("#loginPage").show("slow");
+                    });
+
+                    $("#register").click(function () {
+                        $("#loginPage").hide();
+                        $("#registerPage").show("slow");
+                    });
+
+                    $("#LoginButton").click(function(){
+                        var username = $('#usernameLogin').val();
+                        var password = $('#passwordLogin').val();
+                        //alert(username + " " + password);
+                        $.post("https://api.mekatrotekno.com/login/login",
+                            {
+                                username: username,
+                                password: password
+                            },
+                            function(data,status){
+                                //console.log(data);
+                                console.log(status + " Token");
+                                //localStorage.setItem("loginData", JSON.stringify(data));
+                                localStorage.setItem("token", JSON.stringify(data["token"]["token"]));
+
+                            });
+                        var token = JSON.parse(localStorage.getItem("token"));
+
+                        var okeyy = "blabla";
+
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.reload(); // then reload the page.(3)
+                        }, 1000);
+                    });
+
+
+
+                }else{
+
+                    var fullname = JSON.parse(localStorage.getItem("fullname"));
+                    var username = JSON.parse(localStorage.getItem("username"));
+
+                    if (fullname == null && username == null){
+
+                        $.post("https://api.mekatrotekno.com/login/info",
+                            {
+                                token: OKEY
+                            },
+                            function(dataa,status){
+                                //console.log(dataa);
+                                console.log(status + " My Data");
+                                //localStorage.setItem("myData", JSON.stringify(dataa));
+                                localStorage.setItem("fullname", JSON.stringify(dataa["user"]["fullname"]));
+                                localStorage.setItem("username", JSON.stringify(dataa["user"]["username"]));
+                            });
+
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.reload(); // then reload the page.(3)
+                        }, 1000);
+                    }
+
+                    $("#fullname").text(fullname);
+                    $("#fullname2").text(fullname);
+                    $("#username").text(username);
+
+                    $("#Hakkinda").click(function () {
+                        alert("Okan Üniversitesi Mekatronik Kulübü tarafından ikinci kez düzenlenecek olan Robokan'17 Yarışması Dünyanın dört bir yanından öğrencilerin ve meraklıların katılabileceği bir uluslararası robot yarışmasıdır");
+                    });
+
+                    $("#Cikis").click(function () {
+                        localStorage.clear();
+                        location.reload();
+                    });
+
+                    var qrcode = new QRCode("qrcode");
+                    function makeCode () {
+                        qrcode.makeCode("okanmekatronik://"+ username +"/");
+                    } makeCode();
+
+                    $("#generate").click(function() {
+                        $("#qr").toggle("slow");
+                        $("#closeQR").show("slow");
+                    });
+
+                    $("#closeQR").click(function() {
+                        $("#qr").hide("slow");
+                        $("#closeQR").hide("slow");
+                    });
+
+
+                    $("#user").show();
+                    $("#loginRegister").hide();
+                    $("#loginPage").hide();
+                    $("#registerPage").hide();
+				}
+
+            });
+		</script>
 
 		<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">
 			<div data-role="navbar">
