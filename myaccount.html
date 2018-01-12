@@ -120,7 +120,7 @@
 					</div>
 				</section>
 
-				<section id="user">
+				<section id="user" style="display: none;">
 					<div class="full">
 						<div class="row bos35pt" style="border-bottom: 1px solid #ddd;">
 							<div class="col-3-sm">
@@ -179,7 +179,7 @@
 							</p>
 							<center>
 								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
-									<a href="">
+									<a href="iframe.html">
 										Kulübe Katıl
 									</a>
 								</p>
@@ -217,12 +217,14 @@
 
 						<div class="bos35pt"></div>
 
-
 				</section>
 			</article>
 		</div>
 
+
+
 		<script>
+
             $(document).ready(function(){
 
                 $("#RegisterButton").click(function(){
@@ -366,12 +368,24 @@
 		</script>
 
 		<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="index.html" data-icon="comment" data-prefetch="true" data-transition="fade">Haberler</a></li>
-					<li><a href="events.html" data-icon="bullets" data-prefetch="true" data-transition="fade">Etkinlikler</a></li>
-					<li><a href="contact.html" data-icon="action" data-prefetch="true" data-transition="fade">İletişim</a></li>
-					<li><a href="myaccount.html" data-icon="user" data-prefetch="true" class="ui-btn-active" data-transition="fade">Hesabım</a></li>
+			<div style="border: none!important;" data-role="navbar" style="background-color: #fbfbfb!important;">
+				<ul style="border: none!important;">
+					<li style="border: none!important;"><a style="border: none!important;" href="index.html"  data-prefetch="true" data-transition="fade">
+						<i class="fa fa-newspaper-o" style="font-size: 25px;"></i>
+						<p style="font-size: 10px;">Haberler</p>
+					</a></li>
+					<li style="border: none!important;"><a style="border: none!important;" href="events.html"  data-prefetch="true" data-transition="fade">
+						<i class="fa fa-file-text-o" style="font-size: 25px;"></i>
+						<p style="font-size: 10px;">Etkinlikler</p>
+					</a></li>
+					<li style="border: none!important;"><a style="border: none!important;" href="contact.html"  data-prefetch="true"  class="ui-btn-active" data-transition="fade">
+						<i class="fa fa-map-marker" style="font-size: 25px;"></i>
+						<p style="font-size: 10px;">İletişim</p>
+					</a></li>
+					<li style="border: none!important;"><a style="border: none!important;" href="myaccount.html"  data-prefetch="true" data-transition="fade">
+						<i class="fa fa-user-o" style="font-size: 25px;"></i>
+						<p style="font-size: 10px;">Hesabım</p>
+					</a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /footer -->
