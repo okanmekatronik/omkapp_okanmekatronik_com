@@ -61,6 +61,46 @@
 					</div>
 				</section>
 
+				<section id="registerPage" style="display: none">
+					<div class="full">
+						<div class="row bos35pt">
+							<div class="col-12">
+								<p style="font-size: 12px;">
+									Username
+								</p>
+								<input type="text" name="usernameRegister" id="usernameRegister" placeholder="Username">
+							</div>
+							<div class="col-12">
+								<p style="font-size: 12px;">
+									Password
+								</p>
+								<input type="password" name="passwordRegister" id="passwordRegister" placeholder="Password">
+							</div>
+							<div class="col-12">
+								<p style="font-size: 12px;">
+									Fullname
+								</p>
+								<input type="text" name="fullnameRegister" id="fullnameRegister" placeholder="Fullname">
+							</div>
+							<div class="col-12">
+								<p style="font-size: 12px;">
+									Email
+								</p>
+								<input type="email" name="emailRegister" id="emailRegister" placeholder="Email">
+							</div>
+							<div class="col-12">
+								<p style="font-size: 12px;">
+									Phone
+								</p>
+								<input type="text" name="phoneRegister" id="phoneRegister" placeholder="Phone Number">
+							</div>
+							<div class="col-12">
+								<button name="Register" id="RegisterButton">Register</button>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				<section id="loginRegister">
 					<div class="full">
 						<div class="row bos35pt">
@@ -200,17 +240,17 @@
                             console.log(data3);
                             console.log(status + " Token");
                             //localStorage.setItem("loginData", JSON.stringify(data));
-                            //localStorage.setItem("token", JSON.stringify(data["token"]["token"]));
+                            localStorage.setItem("token", JSON.stringify(data3["token"]["token"]));
 
                         });
                     //var token = JSON.parse(localStorage.getItem("token"));
 
                     //var okeyy = "blabla";
-					/*
+
                     setTimeout(function(){// wait for 5 secs(2)
                         location.reload(); // then reload the page.(3)
                     }, 1000);
-                    */
+                    
                 });
 
 
