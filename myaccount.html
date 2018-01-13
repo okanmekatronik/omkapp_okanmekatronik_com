@@ -227,6 +227,12 @@
 
             $(document).ready(function(){
 
+                var loadMyAccountData = localStorage.setItem("loadMyAccountData", 0);
+                if (loadMyAccountData == 0){
+                    localStorage.setItem("loadMyAccountData", 1);
+                    location.reload();
+				}
+
                 $("#RegisterButton").click(function(){
                     var username2 = $('#usernameRegister').val();
                     var password2 = $('#passwordRegister').val();
@@ -253,8 +259,8 @@
 
                     //var okeyy = "blabla";
 
-                    setTimeout(function(){// wait for 5 secs(2)
-                        location.reload(); // then reload the page.(3)
+                    setTimeout(function(){
+                        location.reload();
                     }, 1000);
 
                 });
@@ -298,8 +304,8 @@
 
                         var okeyy = "blabla";
 
-                        setTimeout(function(){// wait for 5 secs(2)
-                            location.reload(); // then reload the page.(3)
+                        setTimeout(function(){
+                            location.reload();
                         }, 1000);
                     });
 
@@ -324,8 +330,8 @@
                                 localStorage.setItem("username", JSON.stringify(dataa["user"]["username"]));
                             });
 
-                        setTimeout(function(){// wait for 5 secs(2)
-                            location.reload(); // then reload the page.(3)
+                        setTimeout(function(){
+                            location.reload();
                         }, 1000);
                     }
 
