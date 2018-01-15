@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/formalize.css">
+    <link rel="stylesheet" type="text/css" href="css/zerogrid.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/qr.js"></script>
+    <title>Okan Mekatronik</title>
+</head>
+<body>
+<div data-role="page" data-title="qr" data-quicklinks="true">
+    <header>
+        <div class="full">
+            <div class="row">
+                <div class="col-11-sm">
+                    <h1 class="headerTitle">QR Code</h1>
+                </div>
+                <div class="col-1-sm">
+                    <i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <article>
+
+        <section>
+
+            <div class="row" id="qr" style="display: block;">
+                <div class="col-12 bos35pt">
+                    <center>
+                        <div id="qrcode"></div>
+                    </center>
+                </div>
+            </div>
+
+
+        </section>
+    </article>
+</div>
+
+
+
+<script>
+
+    $(document).ready(function(){
+
+        var username = JSON.parse(localStorage.getItem("username"));
+        var qrcode = new QRCode("qrcode");
+        function makeCode () {
+            qrcode.makeCode("okanmekatronik://"+ username +"/");
+        } makeCode();
+
+    });
+</script>
+
+<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">
+    <div style="border: none!important;" data-role="navbar" style="background-color: #fbfbfb!important;">
+        <ul style="border: none!important;">
+            <li style="border: none!important;"><a style="border: none!important;" href="index.html"  data-prefetch="true" data-transition="fade">
+                <i class="fa fa-newspaper-o" style="font-size: 25px;"></i>
+                <p style="font-size: 10px;">Haberler</p>
+            </a></li>
+            <li style="border: none!important;"><a style="border: none!important;" href="events.html"  data-prefetch="true" data-transition="fade">
+                <i class="fa fa-file-text-o" style="font-size: 25px;"></i>
+                <p style="font-size: 10px;">Etkinlikler</p>
+            </a></li>
+            <li style="border: none!important;"><a style="border: none!important;" href="contact.html"  data-prefetch="true"  class="ui-btn-active" data-transition="fade">
+                <i class="fa fa-map-marker" style="font-size: 25px;"></i>
+                <p style="font-size: 10px;">İletişim</p>
+            </a></li>
+            <li style="border: none!important;"><a style="border: none!important;" href="myaccount.html"  data-prefetch="true" data-transition="fade">
+                <i class="fa fa-user-o" style="font-size: 25px;"></i>
+                <p style="font-size: 10px;" onclick="reloadPage()">Hesabım</p>
+            </a></li>
+        </ul>
+    </div><!-- /navbar -->
+</div><!-- /footer -->
+</body>
+</html>

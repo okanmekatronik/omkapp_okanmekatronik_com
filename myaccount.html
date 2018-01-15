@@ -16,11 +16,6 @@
 		<script src="js/index.js"></script>
 		<script src="js/qr.js"></script>
 		<title>Okan Mekatronik</title>
-
-		<meta name="apple-mobile-web-app-title" content="OMK Android">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
 	</head>
 	<body>
 		<div data-role="page" data-title="Hesabım" data-quicklinks="true">
@@ -31,7 +26,7 @@
 							<h1 class="headerTitle">Hesabım</h1>
 						</div>
 						<div class="col-1-sm">
-							<!-- <i id="headerIcon" class="fa fa-search" aria-hidden="true"></i> -->
+							<i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
@@ -150,7 +145,7 @@
 						<div class="row" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
 							<div class="col-10-sm">
 								<p>
-									<a href="#" id="generate">
+									<a href="qr.html" id="">
 										&nbsp; QR Code
 									</a>
 								</p>
@@ -203,7 +198,7 @@
 							</p>
 							<center>
 								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
-									<a href="">
+									<a href="changePass.html">
 										Şifremi Değiştir
 									</a>
 								</p>
@@ -232,6 +227,11 @@
                     localStorage.setItem("loadMyAccountData", 1);
                     location.reload();
 				}
+
+                var appCache = window.applicationCache;
+                if (appCache.status == 1) {
+                    appCache.update();
+                }
 
                 $("#RegisterButton").click(function(){
                     var username2 = $('#usernameRegister').val();
@@ -390,7 +390,7 @@
 					</a></li>
 					<li style="border: none!important;"><a style="border: none!important;" href="myaccount.html"  data-prefetch="true" data-transition="fade">
 						<i class="fa fa-user-o" style="font-size: 25px;"></i>
-						<p style="font-size: 10px;">Hesabım</p>
+						<p style="font-size: 10px;" onclick="reloadPage()">Hesabım</p>
 					</a></li>
 				</ul>
 			</div><!-- /navbar -->
