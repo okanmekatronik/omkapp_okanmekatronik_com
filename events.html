@@ -16,13 +16,8 @@
 		<script src="js/index.js"></script>
 		<script src="js/freelanceZ.js"></script>
 		<title>Okan Mekatronik</title>
-
-		<meta name="apple-mobile-web-app-title" content="OMK Android">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
 	</head>
-	<body>
+	<body  >
 		<div data-role="page" data-title="Etkinlikler" data-quicklinks="true">
 			<header>
 				<div class="full">
@@ -31,7 +26,7 @@
 							<h1 class="headerTitle">Etkinlikler</h1>
 						</div>
 						<div class="col-1-sm">
-							<i id="headerIcon" class="fa fa-search" aria-hidden="true"></i>
+							<i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
@@ -44,12 +39,18 @@
 			</section>
 
 			<script>
+
                 $(function() {
+                    var appCache = window.applicationCache;
+                    if (appCache.status == 1) {
+                        appCache.update();
+                    }
                     $.getJSON("https://api.mekatrotekno.com/events/fetch", function(result){
                         result = result.reverse();
                         $.each(result, function(ii, fieldd){
-							$("#actionsfeed").append('<div class="row" style="border-bottom: 1px solid #ddd;"> <div class="col-3-sm"> <img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+fieldd.image+'.png" alt=""> </div> <div class="col-9-sm"> <h2>'+fieldd.title+'</h2> <p>'+fieldd.text+'</p> <p><br><b>Etkinlik Yeri:</b> '+fieldd.place+'</p> <p><br><b>Etkinlik Bitişi: </b>'+fieldd.registration_end+'</p> </div> </div>');
+							$("#actionsfeed").append('<div class="row" style="border-bottom: 1px solid #ddd;"> <div class="col-3-sm"> <img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+fieldd.image+'.png" alt=""> </div> <div class="col-9-sm"> <h2>'+fieldd.title+'</h2> <p>'+fieldd.text+'</p> <p><br><p><a id="'+fieldd.id+'" onclick="OpenEvent(this)" href="desc.html?id='+fieldd.id+'">detay</a></p> </div> </div>');
                         });
+                        console.log(result);
                     });
                 });
 			</script>
