@@ -57,6 +57,13 @@
 			</article>
 		</div>
 
+		<script>
+            var appCache = window.applicationCache;
+            if (appCache.status == 1) {
+                appCache.update();
+            }
+		</script>
+
 		<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">
 			<div style="border: none!important;" data-role="navbar" style="background-color: #fbfbfb!important;">
 				<ul style="border: none!important;">

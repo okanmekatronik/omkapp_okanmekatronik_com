@@ -37,22 +37,13 @@
 			</section>
 			<script>
                 $(function() {
-					var appCache = window.applicationCache;
-                    if (appCache.status == 1) {
-                        appCache.update();
-                    }
+
                     $.getJSON("https://api.mekatrotekno.com/announcements", function(result){
                         $.each(result, function(i, field){
-                            $("#newsfeed").append('<a href="#" onclick="OpenNews(this)" id="'+ field.id +'"><div class="row bos35" id="naber"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/'+ field.image +'.png" alt=""> <p>'+ field.title +'</p> </div> </div> </div> </div> </a>');
+                            $("#newsfeed").append('<a href="news.html?id='+ field.id +'" id="'+ field.id +'"><div class="row bos35" id="naber"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/'+ field.image +'.png" alt=""> <p>'+ field.title +'</p> </div> </div> </div> </div> </a>');
                         });
                     });
                 });
-			</script>
-			<script>
-                function OpenNews(obj) {
-                    id = obj.getAttribute("id");
-                    alert(id);
-                }
 			</script>
 		</div>
 

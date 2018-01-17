@@ -18,15 +18,14 @@
     <title>Okan Mekatronik</title>
 </head>
 <body>
-<div data-role="page" data-title="Etkinlikler Açıklama" data-quicklinks="true">
+<div data-role="page" data-title="Haber Detay" data-quicklinks="false">
     <header>
         <div class="full">
             <div class="row">
-                <div class="col-11-sm">
-                    <h1 class="headerTitle">Etkinlik</h1>
-                </div>
-                <div class="col-1-sm">
-                    <i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
+                <div class="col-12-sm">
+                    <center>
+                        <i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
+                    </center>
                 </div>
             </div>
         </div>
@@ -35,28 +34,21 @@
     <section>
         <div class="full" id="actionsfeed">
 
-
-
-
         </div>
     </section>
 
     <script>
 
-        $(function() {
+        $(document).ready(function(){
 
-            var id = document.URL.split("?id=")
-            //alert(id[1]);
-            var realId = id[1];
 
-            $.getJSON("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
+            var idd = document.URL.split("?id=");
+            idd = idd[1];
 
-                    $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+result.event.image+'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
-
-                //console.log(result);
+            $.get("https://api.mekatrotekno.com/announcements/"+idd+"?web", function(data, status){
+                //alert("Data: " + data + "\nStatus: " + status);
+                $("#actionsfeed").html(data);
             });
-
-
 
         });
     </script>
