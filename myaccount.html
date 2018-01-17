@@ -179,15 +179,19 @@
 									</a>
 								</p>
 								<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;padding-top: 15px; padding-bottom: 15px;">
-									<a href="#popupBasic" data-rel="popup">
+									<a href="#popupBasic" id="hakkinda">
 										Hakkında
 									</a>
 								</p>
 							</center>
 						</div>
 
-						<div data-role="popup" id="popupBasic">
-							<p style="padding-top: 10px; padding-bottom: 10px;padding-left: 10px;padding-right: 10px; font-size: 18px;">Okan Üniversitesi Mekatronik Kulübü tarafından ikinci kez düzenlenecek olan Robokan'17 Yarışması Dünyanın dört bir yanından öğrencilerin ve meraklıların katılabileceği bir uluslararası robot yarışmasıdır.</p>
+						<div class="row">
+							<div class="col-12">
+								<div id="popupBasic">
+									<p style="padding-top: 10px; padding-bottom: 10px;padding-left: 10px;padding-right: 10px; font-size: 18px;">Okan Üniversitesi Mekatronik Kulübü tarafından ikinci kez düzenlenecek olan Robokan'17 Yarışması Dünyanın dört bir yanından öğrencilerin ve meraklıların katılabileceği bir uluslararası robot yarışmasıdır.</p>
+								</div>
+							</div>
 						</div>
 
 						<div class="bos35pt"></div>
@@ -227,6 +231,8 @@
                     localStorage.setItem("loadMyAccountData", 1);
                     location.reload();
 				}
+
+                $("#popupBasic").hide();
 
 
                 $("#RegisterButton").click(function(){
@@ -269,6 +275,7 @@
 
                     $("#loginRegister").show();
                     $("#user").hide();
+
 
                     $("#login").click(function () {
                         $("#registerPage").hide();
@@ -335,8 +342,8 @@
                     $("#fullname2").text(fullname);
                     $("#username").text(username);
 
-                    $("#Hakkinda").click(function () {
-                        alert("Okan Üniversitesi Mekatronik Kulübü tarafından ikinci kez düzenlenecek olan Robokan'17 Yarışması Dünyanın dört bir yanından öğrencilerin ve meraklıların katılabileceği bir uluslararası robot yarışmasıdır");
+                    $("#hakkinda").click(function () {
+                        $("#popupBasic").toggle("slow");
                     });
 
                     $("#Cikis").click(function () {
@@ -369,31 +376,38 @@
             });
 		</script>
 
+		<script>
+            var appCache = window.applicationCache;
+            if (appCache.status == 1) {
+                appCache.update();
+            }
+		</script>
+
 		<footer>
 			<div class="full">
 				<div class="row" style="padding-top: 5px;">
 					<div class="col-3-sm">
 						<a href="index.html">
 							<i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">Haberler</p>
+							<p style="font-size: 12px;padding-top: 5px;">Haberler</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="events.html" >
 							<i class="fa fa-file-text-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">Etkinlikler</p>
+							<p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="contact.html" >
 							<i class="fa fa-map-marker" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">İletişim</p>
+							<p style="font-size: 12px;padding-top: 5px;">İletişim</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="myaccount.html">
 							<i class="fa fa-user-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">Hesabım</p>
+							<p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
 						</a>
 					</div>
 				</div>

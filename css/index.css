@@ -14,6 +14,11 @@ body {
     color: #535353;
 }
 
+a{
+    color: #144d8d !important;
+    font-weight: bolder;
+}
+
 header{
     width: 100%;
     height: auto;
@@ -124,3 +129,24 @@ footer{
     width: 100%;
 }
 
+input,button{
+    width: 100%;
+    min-height: 35px;
+    font-size: 16px;
+    color: #535353;
+    border-radius: 5px;
+    background-color: #dddddd;
+    border: none;
+    padding-left: 15px;
+}
+
+input{
+    width: 100%;
+    min-height: 35px;
+    font-size: 16px;
+    color: #535353;
+    border-radius: 5px;
+    background-color: #dddddd;
+    border: none;
+    padding-left: 15px;
+}

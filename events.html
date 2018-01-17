@@ -53,31 +53,38 @@
 			</script>
 		</div>
 
+		<script>
+            var appCache = window.applicationCache;
+            if (appCache.status == 1) {
+                appCache.update();
+            }
+		</script>
+
 		<footer>
 			<div class="full">
 				<div class="row" style="padding-top: 5px;">
 					<div class="col-3-sm">
 						<a href="index.html">
 							<i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">Haberler</p>
+							<p style="font-size: 12px;padding-top: 5px;">Haberler</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="events.html" >
 							<i class="fa fa-file-text-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">Etkinlikler</p>
+							<p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="contact.html" >
 							<i class="fa fa-map-marker" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">İletişim</p>
+							<p style="font-size: 12px;padding-top: 5px;">İletişim</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="myaccount.html">
 							<i class="fa fa-user-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;">Hesabım</p>
+							<p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
 						</a>
 					</div>
 				</div>
