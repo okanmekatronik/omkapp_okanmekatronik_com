@@ -11,13 +11,19 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="css/">
 		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<script src="js/wow.min.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
 		 <script src="js/"></script>
 		<script src="js/index.js"></script>
 		<script src="js/freelanceZ.js"></script>
 		<title>Okan Mekatronik</title>
 	</head>
-	<body>
+	<body onload="$(function() {
+	    $('html').hide();
+	  $('html').fadeIn(2000);
+	});">
+
 		<div data-role="page" data-title="Haberler" data-quicklinks="true">
 			<header>
 				<div class="full">
@@ -40,9 +46,10 @@
 
                     $.getJSON("https://api.mekatrotekno.com/announcements", function(result){
                         $.each(result, function(i, field){
-                            $("#newsfeed").append('<a href="news.html?id='+ field.id +'" id="'+ field.id +'"><div class="row bos35" id="naber"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/'+ field.image +'.png" alt=""> <p>'+ field.title +'</p> </div> </div> </div> </div> </a>');
+                            $("#newsfeed").append('<a class="wow bounceInLeft" data-wow-delay="0.1s" href="news.html?id='+ field.id +'" id="'+ field.id +'"><div class="row bos35" id="naber"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/'+ field.image +'.png" alt=""> <p>'+ field.title +'</p> </div> </div> </div> </div> </a>');
                         });
                     });
+
                 });
 			</script>
 		</div>
@@ -57,25 +64,25 @@
 		<div class="full">
 			<div class="row" style="padding-top: 5px;">
 				<div class="col-3-sm">
-					<a href="index.html">
+					<a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
 						<i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
 						<p style="font-size: 12px;padding-top: 5px;">Haberler</p>
 					</a>
 				</div>
 				<div class="col-3-sm">
-					<a  href="events.html" >
+					<a  href="events.html"  onclick="$(function() {$('html').fadeOut(2000);});">
 						<i class="fa fa-file-text-o" style="font-size: 35px;"></i>
 						<p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
 					</a>
 				</div>
 				<div class="col-3-sm">
-					<a  href="contact.html" >
+					<a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
 						<i class="fa fa-map-marker" style="font-size: 35px;"></i>
 						<p style="font-size: 12px;padding-top: 5px;">İletişim</p>
 					</a>
 				</div>
 				<div class="col-3-sm">
-					<a  href="myaccount.html">
+					<a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
 						<i class="fa fa-user-o" style="font-size: 35px;"></i>
 						<p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
 					</a>
@@ -83,7 +90,6 @@
 			</div>
 		</div>
 	</footer>
-
 
 	</body>
 </html>

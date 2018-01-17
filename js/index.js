@@ -21,6 +21,18 @@ $(document).on("pagecontainerchange", function () {
 	});
 });
 */
+
+wow = new WOW(
+    {
+        boxClass: 'wow',
+        animateClass: 'animated',
+        offset: 0,
+        mobile: true,
+        live: true
+    }
+)
+wow.init();
+
 var app = {
 	// Application Constructor
 	initialize: function () {

@@ -11,12 +11,17 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="css/">
 		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<script src="js/wow.min.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
 		 <script src="js/"></script>
 		<script src="js/index.js"></script>
 		<title>Okan Mekatronik</title>
 	</head>
-	<body>
+	<body onload="$(function() {
+	    $('html').hide();
+	  $('html').fadeIn(2000);
+	});">
 		<div data-role="page" data-title="İletişim" data-quicklinks="true">
 			<header>
 				<div class="full">
@@ -67,26 +72,26 @@
 		<footer>
 			<div class="full">
 				<div class="row" style="padding-top: 5px;">
-					<div class="col-3-sm">
-						<a href="index.html">
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
 							<i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
 							<p style="font-size: 12px;padding-top: 5px;">Haberler</p>
 						</a>
 					</div>
-					<div class="col-3-sm">
-						<a  href="events.html" >
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a  href="events.html" onclick="$(function() {$('html').fadeOut(2000);});" >
 							<i class="fa fa-file-text-o" style="font-size: 35px;"></i>
 							<p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
 						</a>
 					</div>
-					<div class="col-3-sm">
-						<a  href="contact.html" >
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
 							<i class="fa fa-map-marker" style="font-size: 35px;"></i>
 							<p style="font-size: 12px;padding-top: 5px;">İletişim</p>
 						</a>
 					</div>
-					<div class="col-3-sm">
-						<a  href="myaccount.html">
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
 							<i class="fa fa-user-o" style="font-size: 35px;"></i>
 							<p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
 						</a>
