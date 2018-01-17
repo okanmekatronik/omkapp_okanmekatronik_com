@@ -1,4 +1,4 @@
-
+/*
 $(function () {
 	$("[data-role='navbar']").navbar();
 	$("[data-role='header'], [data-role='footer']").toolbar();
@@ -20,7 +20,7 @@ $(document).on("pagecontainerchange", function () {
 		}
 	});
 });
-
+*/
 var app = {
 	// Application Constructor
 	initialize: function () {
