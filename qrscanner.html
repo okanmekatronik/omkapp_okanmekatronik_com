@@ -26,7 +26,7 @@
         <div class="full">
             <div class="row">
                 <div class="col-11-sm">
-                    <h1 class="headerTitle">Takımım</h1>
+                    <h1 class="headerTitle">QR Scanner</h1>
                 </div>
                 <div class="col-1-sm">
                     <i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
@@ -39,19 +39,7 @@
         <div class="full" id="actionsfeed"></div>
         <div class="full" id="action">
 
-            <div class="row" id="takimInfo">
-                        <p style="font-size:12px;"><br><br><br> Takım İsmi </p>
-                        <div  id="cak"></div>
-                        <p style="font-size:12px;"><br><br><br> Takım arkadaşları </p>
-                        <div  id="cakk"></div>
-                        <div class="davet">
-                                <p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px; color:red; text-align:center;"><a id="Hloo" href="" style=" color:orange!important; text-align:center;"> Takım Daveti Gönder </a></p>
-                        </div>
-                        <br><br><br> 
-                        <div class="exitt">
-                                <p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px; color:red; text-align:center;"><a style=" color:red!important; text-align:center;"> Takımdan Çık </a></p>
-                        </div>
-            </div>
+            
 
         </div>
     </section>
@@ -60,41 +48,7 @@
 
         $(function() {
 
-            var idd = document.URL.split("?id=");
-            var iid = idd[1];
-            var postData = JSON.parse(localStorage.getItem("token"));
-            var fullname = JSON.parse(localStorage.getItem("fullname"));
-
-            $("#Hloo").attr("href", "qrscanner.html?id=" + iid);
-        
-            $.post("https://api.mekatrotekno.com/competitions/info/"+iid ,{token: postData}, function(teamAddExit){
-                console.log(teamAddExit);
-                //alert(teamAddExit.team);
-                var roler;
-                if(teamAddExit.team.role == 1){
-                    roler = "Takım Lideri";
-                }else if(teamAddExit.team.role == 0){
-                    roler = "Üye";
-                }else{
-                    roler = "Davetli";
-                }
-                roler = "";
-                if(teamAddExit.team == false){
-                    
-                }else{
-                    $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a>'+ teamAddExit.team.team +'</a></p>');
-                    $("#cakk").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a style="width=100%;"> '+ fullname +'  <span style="text-align:right;">'+roler+'</span> </a></p>');
-                    $(".exitt").click(function(){
-                        var url = "events.html";    
-                        $.post("https://api.mekatrotekno.com/team/exit/" ,{teamID: teamAddExit.team.id,token: postData}, function(datas){
-                            alert("Status: " + datas.status + " Text: " + datas.text)
-                            $(location).attr('href',url);
-                        })
-                    });
-
-                }
-
-            });
+            alert("QR Scanner");
 
         });
     </script>

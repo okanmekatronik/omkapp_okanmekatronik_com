@@ -54,9 +54,10 @@
 
             <div class="row" id="takimInfo">
                         
-                        <div id="cak">
+                    <p style="font-size:12px;"><br><br><br> Takım İsmi </p>
+                    <div  id="cak"></div>
 
-                        </div>
+                    
             </div>
 
         </div>
@@ -88,7 +89,7 @@
                             }); 
                         }else{
                             $("#gizle").hide();
-                            $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a href="team.html?id='+ realId +'">'+ resulter.team.team +'</a></p>');
+                            $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-left:20px; padding-top: 15px; padding-bottom: 15px;"><a href="team.html?id='+ realId +'">'+ resulter.team.team +'</a></p>');
                         }
                     });
             }
