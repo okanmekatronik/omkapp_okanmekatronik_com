@@ -9,12 +9,10 @@
     <link rel="stylesheet" type="text/css" href="css/formalize.css">
     <link rel="stylesheet" type="text/css" href="css/zerogrid.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/">
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/animate.css">
     <script src="js/wow.min.js"></script>
     <script src="js/jquery-2.1.0.min.js"></script>
-     <script src="js/"></script>
     <script src="js/index.js"></script>
     <script src="js/freelanceZ.js"></script>
     <title>Okan Mekatronik</title>
@@ -50,29 +48,30 @@
 
         $(function() {
 
-            var id = document.URL.split("?id=")
-            //alert(id[1]);
-            var realId = id[1];
+            var idd = document.URL.split("=");
+            var iid = idd[1].split("&");
+            var iscomp = idd[2];
+            //alert(id[2]);
+            var realId = iid[0];
+            //alert(realId);
+            var postData = JSON.parse(localStorage.getItem("token"));
 
-            $.getJSON("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
-
-                    $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+result.event.image+'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
-
+            $.post("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
                 //console.log(result);
+                    $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
             });
-
-
+            //alert(iscomp);
+            if (iscomp == true){
+                alert("hello");
+                $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(resulter){
+                        console.log(resulter);
+                    });
+            }
 
         });
     </script>
 </div>
 
-<script>
-    var appCache = window.applicationCache;
-    if (appCache.status == 1) {
-        appCache.update();
-    }
-</script>
 <div style="padding-top: 50px;"></div>
 <footer>
     <div class="full">

@@ -9,12 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="css/formalize.css">
 		<link rel="stylesheet" type="text/css" href="css/zerogrid.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<link rel="stylesheet" type="text/css" href="css/">
 		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<script src="js/wow.min.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
-		 <script src="js/"></script>
 		<script src="js/index.js"></script>
 		<script src="js/freelanceZ.js"></script>
 		<title>Okan Mekatronik</title>
@@ -47,12 +45,14 @@
 
                 $(function() {
 
-                    $.getJSON("https://api.mekatrotekno.com/events/fetch", function(result){
-                        result = result.reverse();
-                        $.each(result, function(ii, fieldd){
-							$("#actionsfeed").append('<div class="row" style="border-bottom: 1px solid #ddd;"> <div class="col-3-sm"> <img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+fieldd.image+'.png" alt=""> </div> <div class="col-9-sm"> <h2>'+fieldd.title+'</h2> <p>'+fieldd.text+'</p> <p><br><p><a id="'+fieldd.id+'" onclick="OpenEvent(this)" href="desc.html?id='+fieldd.id+'">detay</a></p> </div> </div>');
-                        });
+					var postData = JSON.parse(localStorage.getItem("token"));
+
+                    $.post("https://api.mekatrotekno.com/events/fetch",{ token: postData}, function(result){
                         console.log(result);
+						//result = result.reverse();
+                        $.each(result, function(ii, fieldd){
+							$("#actionsfeed").append('<a id="'+fieldd.id+'" onclick="OpenEvent(this)" href="desc.html?id='+fieldd.id+'&iscomp='+fieldd.isCompetition+'"><div class="row" style="border-bottom: 1px solid #ddd;"> <div class="col-3-sm"> <img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+fieldd.image+'.png" alt=""> </div> <div class="col-9-sm"> <h2>'+fieldd.title+'</h2> <p>'+fieldd.text+'</p> <p><br> </div> </div></a>');
+                        });
                     });
                 });
 			</script>
