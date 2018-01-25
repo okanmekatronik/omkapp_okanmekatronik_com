@@ -1,4 +1,4 @@
-
+/*
 $(function () {
 	$("[data-role='navbar']").navbar();
 	$("[data-role='header'], [data-role='footer']").toolbar();
@@ -20,6 +20,18 @@ $(document).on("pagecontainerchange", function () {
 		}
 	});
 });
+*/
+
+wow = new WOW(
+    {
+        boxClass: 'wow',
+        animateClass: 'animated',
+        offset: 0,
+        mobile: true,
+        live: true
+    }
+)
+wow.init();
 
 var app = {
 	// Application Constructor

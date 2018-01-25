@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/formalize.css">
+    <link rel="stylesheet" type="text/css" href="css/zerogrid.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+     <script src="js/"></script>
+    <script src="js/index.js"></script>
+    <script src="js/qr.js"></script>
+    <title>Okan Mekatronik</title>
+</head>
+<body onload="$(function() {
+	    $('html').hide();
+	  $('html').fadeIn(2000);
+	});">
+<div data-role="page" data-title="changePassword" data-quicklinks="true">
+    <header>
+        <div class="full">
+            <div class="row">
+                <div class="col-11-sm">
+                    <h1 class="headerTitle">Change Password</h1>
+                </div>
+                <div class="col-1-sm">
+                    <!-- <i id="headerIcon" class="fa fa-search" aria-hidden="true"></i> -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <article>
+
+        <section id="changePassword" style="display: block">
+            <div class="full">
+                <div class="row bos35pt">
+                    <div class="col-12">
+                        <p style="font-size: 12px;">
+                            Old Password
+                        </p>
+                        <input type="password" name="oldPass" id="oldPass" placeholder="Old Password">
+                    </div>
+                    <div class="col-12">
+                        <p style="font-size: 12px;">
+                            New Password
+                        </p>
+                        <input type="password" name="newPass1" id="newPass1" placeholder="New Password">
+                    </div>
+                    <div class="col-12">
+                        <p style="font-size: 12px;">
+                            New Password
+                        </p>
+                        <input type="password" name="newPass2" id="newPass2" placeholder="New Password">
+                    </div>
+                    <div class="col-12">
+                        <button name="ChangePassword" id="ChangePassword">Change Password</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </article>
+</div>
+
+
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#ChangePassword").click(function () {
+            var oldPass = $("#oldPass").val();
+            var newPass1 = $("#newPass1").val();
+            var newPass2 = $("#newPass2").val();
+            var token = JSON.parse(localStorage.getItem("token"));
+
+            if (newPass1 == newPass2){
+                $.post("https://api.mekatrotekno.com/login/changePass",
+                    {
+                        token: token,
+                        old: oldPass,
+                        new: newPass1
+
+                    },
+                    function(data,status){
+                        if (data["status"] == "OK"){
+                            alert("Şifreniz başarılı bir şekilde güncellendi.");
+                        }else{
+                            alert("Yanlış Şifre Girdiniz..");
+                        }
+                    });
+            }else{
+                alert("Şifreler aynı değil veya eski şifrenizi yanlış girdiniz...");
+            }
+
+        });
+
+    });
+
+
+
+</script>
+
+<script>
+    var appCache = window.applicationCache;
+    if (appCache.status == 1) {
+        appCache.update();
+    }
+</script>
+<div style="padding-top: 50px;"></div>
+<footer>
+    <div class="full">
+        <div class="row" style="padding-top: 5px;">
+            <div class="col-3-sm">
+                <a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Haberler</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="events.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-file-text-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-map-marker" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">İletişim</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-user-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

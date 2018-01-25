@@ -9,14 +9,19 @@
 		<link rel="stylesheet" type="text/css" href="css/formalize.css">
 		<link rel="stylesheet" type="text/css" href="css/zerogrid.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" type="text/css" href="css/">
 		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<script src="js/wow.min.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
-		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		 <script src="js/"></script>
 		<script src="js/index.js"></script>
 		<title>Okan Mekatronik</title>
 	</head>
-	<body>
+	<body onload="$(function() {
+	    $('html').hide();
+	  $('html').fadeIn(2000);
+	});">
 		<div data-role="page" data-title="İletişim" data-quicklinks="true">
 			<header>
 				<div class="full">
@@ -57,15 +62,42 @@
 			</article>
 		</div>
 
-		<div data-role="footer" data-position="fixed" data-theme="a" data-tap-toggle="false">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="index.html" data-icon="comment" data-prefetch="true" data-transition="fade">Haberler</a></li>
-					<li><a href="events.html" data-icon="bullets" data-prefetch="true" data-transition="fade">Etkinlikler</a></li>
-					<li><a href="contact.html" data-icon="action" data-prefetch="true"  class="ui-btn-active" data-transition="fade">İletişim</a></li>
-					<li><a href="myaccount.html" data-icon="user" data-prefetch="true" data-transition="fade">Hesabım</a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /footer -->
+		<script>
+            var appCache = window.applicationCache;
+            if (appCache.status == 1) {
+                appCache.update();
+            }
+		</script>
+		<div style="padding-top: 50px;"></div>
+		<footer>
+			<div class="full">
+				<div class="row" style="padding-top: 5px;">
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
+							<i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
+							<p style="font-size: 12px;padding-top: 5px;">Haberler</p>
+						</a>
+					</div>
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a  href="events.html" onclick="$(function() {$('html').fadeOut(2000);});" >
+							<i class="fa fa-file-text-o" style="font-size: 35px;"></i>
+							<p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
+						</a>
+					</div>
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+							<i class="fa fa-map-marker" style="font-size: 35px;"></i>
+							<p style="font-size: 12px;padding-top: 5px;">İletişim</p>
+						</a>
+					</div>
+					<div class="col-3-sm" onclick="$(function() {$('html').fadeOut(2000);});">
+						<a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
+							<i class="fa fa-user-o" style="font-size: 35px;"></i>
+							<p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/formalize.css">
+    <link rel="stylesheet" type="text/css" href="css/zerogrid.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+     <script src="js/"></script>
+    <script src="js/index.js"></script>
+    <title>Okan Mekatronik</title>
+    <style>
+        body{
+            width: 100vw!important;
+            height: 100vh!important;
+            padding: 0!important;
+            margin: 0!important;
+        }
+        iframe,embed,object{
+            width: 100vw;
+            min-height: 85vh;
+        }
+    </style>
+
+</head>
+<body onload="$(function() {
+	    $('html').hide();
+	  $('html').fadeIn(2000);
+	});">
+<div data-role="page" data-title="Kulübe Katıl" data-quicklinks="true">
+    <header>
+        <div class="full">
+            <div class="row">
+                <div class="col-11-sm">
+                    <h1 class="headerTitle">Kulübe Katıl</h1>
+                </div>
+                <div class="col-1-sm">
+                    <!-- <i id="headerIcon" class="fa fa-search" aria-hidden="true"></i> -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <section>
+            <iframe src="https://root.okanmekatronik.com/register.php" frameborder="0"></iframe>
+            <!--- <embed src="https://root.okanmekatronik.com/register.php"> -->
+        </section>
+    </article>
+</div>
+<script>
+    var appCache = window.applicationCache;
+    if (appCache.status == 1) {
+        appCache.update();
+    }
+</script>
+<div style="padding-top: 50px;"></div>
+<footer>
+    <div class="full">
+        <div class="row" style="padding-top: 5px;">
+            <div class="col-3-sm">
+                <a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Haberler</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="events.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-file-text-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-map-marker" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">İletişim</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-user-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
