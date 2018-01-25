@@ -26,7 +26,7 @@
         <div class="full">
             <div class="row">
                 <div class="col-11-sm">
-                    <h1 class="headerTitle">Etkinlik</h1>
+                    <h1 class="headerTitle">Takımım</h1>
                 </div>
                 <div class="col-1-sm">
                     <i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
@@ -39,23 +39,17 @@
         <div class="full" id="actionsfeed"></div>
         <div class="full" id="action">
 
-            <div class="row" id="gizle">
-                        <p style="font-size: 12px;">
-                            Takım
-                        </p>
-                        <center>
-                            <p id="TakimKur" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
-                                <a id="TakimKur">
-                                    Takım Kur
-                                </a>
-                            </p>
-                        </center>
-            </div>
-
             <div class="row" id="takimInfo">
-                        
-                        <div id="cak">
-
+                        <p style="font-size:12px;"><br><br><br> Takım İsmi </p>
+                        <div  id="cak"></div>
+                        <p style="font-size:12px;"><br><br><br> Takım arkadaşları </p>
+                        <div  id="cakk"></div>
+                        <div class="davet">
+                                <p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px; color:red; text-align:center;"><a style=" color:orange!important; text-align:center;"> Takım Daveti Gönder </a></p>
+                        </div>
+                        <br><br><br> 
+                        <div class="exitt">
+                                <p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px; color:red; text-align:center;"><a style=" color:red!important; text-align:center;"> Takımdan Çık </a></p>
                         </div>
             </div>
 
@@ -66,32 +60,40 @@
 
         $(function() {
 
-            var idd = document.URL.split("=");
-            var iid = idd[1].split("&");
-            var iscomp = idd[2];
-            var realId = iid[0];
+            var idd = document.URL.split("?id=");
+            var iid = idd[1];
             var postData = JSON.parse(localStorage.getItem("token"));
-            $.post("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
-                    $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
-            });
-            if (iscomp == "true"){
-                $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(resulter){
-                        console.log(resulter);
-                        if(resulter.team == false){
-                            $("#takimInfo").hide();
-                            $("#TakimKur").click(function(){
-                                var takimIsmi = prompt("Takım İsmini giriniz", "Takım ismi");
-                                $.post("https://api.mekatrotekno.com/team/create",{token: postData, event_id: realId,teamname: takimIsmi}, function(createTeamer){
-                                    alert("Status: " + createTeamer.status + " Text: " + createTeamer.text);
-                                    location.reload();
-                                });
-                            }); 
-                        }else{
-                            $("#gizle").hide();
-                            $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a href="team.html?id='+ realId +'">'+ resulter.team.team +'</a></p>');
-                        }
+            var fullname = JSON.parse(localStorage.getItem("fullname"));
+        
+            $.post("https://api.mekatrotekno.com/competitions/info/"+iid ,{token: postData}, function(teamAddExit){
+                console.log(teamAddExit);
+                //alert(teamAddExit.team);
+                var roler;
+                if(teamAddExit.team.role == 1){
+                    roler = "Takım Lideri";
+                }else if(teamAddExit.team.role == 0){
+                    roler = "Üye";
+                }else{
+                    roler = "Davetli";
+                }
+                roler = "";
+                if(teamAddExit.team == false){
+                    
+                }else{
+                    $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a href="team.html?id='+ teamAddExit.team.id +'">'+ teamAddExit.team.team +'</a></p>');
+                    $("#cakk").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a style="width=100%;"> '+ fullname +'  <span style="text-align:right;">'+roler+'</span> </a></p>');
+                    $(".exitt").click(function(){
+                        var url = "events.html";    
+                        $.post("https://api.mekatrotekno.com/team/exit/" ,{teamID: teamAddExit.team.id,token: postData}, function(datas){
+                            alert("Status: " + datas.status + " Text: " + datas.text)
+                            $(location).attr('href',url);
+                        })
                     });
-            }
+
+                }
+
+            });
+
         });
     </script>
 </div>
