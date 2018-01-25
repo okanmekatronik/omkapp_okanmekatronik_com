@@ -61,8 +61,7 @@
                     $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
             });
             //alert(iscomp);
-            if (iscomp == true){
-                alert("hello");
+            if (iscomp == "true"){
                 $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(resulter){
                         console.log(resulter);
                     });
