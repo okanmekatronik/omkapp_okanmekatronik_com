@@ -84,7 +84,7 @@
                     var kullaniciadi = prompt("Kullanıcı Adı:", "kullanıcı adı...");
                     var helloword = teamAddExit.team.id;
                     //alert(kullaniciadi);
-                    $.post("https://api.mekatrotekno.com/team/invite", {token: postData, user: kullaniciadi,team_id: helloword}, function(sece){
+                    $.post("https://api.mekatrotekno.com/team/invite", {token: postData, user: kullaniciadi, team_id: helloword}, function(sece){
                         alert(sece);
                     });
                 });
