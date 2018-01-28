@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/formalize.css">
+    <link rel="stylesheet" type="text/css" href="css/zerogrid.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/freelanceZ.js"></script>
+    <title>Okan Mekatronik</title>
+</head>
+<body onload="$(function() {
+	    $('html').hide();
+	  $('html').fadeIn(2000);
+	});">
+<div data-role="page" data-title="Etkinlikler Açıklama" data-quicklinks="true">
+    <header>
+        <div class="full">
+            <div class="row">
+                <div class="col-11-sm">
+                    <h1 class="headerTitle">Yarışmaya Katıl</h1>
+                </div>
+                <div class="col-1-sm">
+                    <i id="headerIcon" onclick="window.location.reload()" class="fa fa-refresh" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="full" id="actionsfeed"></div>
+        <div class="full" id="action">
+            <br><br>
+            <div class="row" style="background: rgba(11, 84, 138, 1);">
+                    
+                  <div class="row">
+                        <div class="col-2-sm">
+                                <img src="img/logo.png" style="width:100%;">
+                            </div>   
+                            <div class="col-10-sm">
+                                <center style="color:#fff!important;" id="details">
+                                      
+                                </center>
+                            </div>   
+                  </div>
+            </div>
+
+            <div class="row bos35pt">
+                    <p style="font-size: 12px;">
+                            Robot Bilgileri
+                        </p>
+                    <div class="row">
+                            <div class="col-12">
+                                    <input type="text" name="robotName" id="robotName" placeholder="Robotunuzun ismi">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" name="CompanyName" id="CompanyName" placeholder="Katıldığınız okulun veya kurumun ismi">
+                                </div>
+                                <div class="col-12">
+                                        <input type="text" name="CityName" id="CityName" placeholder="Katıldığınız şehir">
+                                    </div>
+                            
+                                <p style="font-size: 12px;">
+                                        Robot isminiz sadece ingilizce karakterlerden oluşabilir ve özel karakterler kullanamaz
+                                    </p>
+
+
+                                    <br><br><br>  <p style="font-size: 12px;">
+                                            Eylemler
+                                        </p>
+                                        <p style="font-size: 16px;padding:15px;color:#ff0000!important;">
+                                            <h2 style="color:#ff0000;">Uyarı!</h2>
+                                                Katıl tuşuna basarak yarışma kurallarını kabul etmiş olursunuz.
+                                            </p>
+                                    <div class="col-12">
+                                            <button name="Login" id="registerButton" style="color:#fff; background-color: #ff0000; font-weight: bolder;">Katıl</button>
+                                        </div>
+
+                    </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="a" style="padding-top: 100px;"></div>
+
+    <script>
+
+        $(function() {
+
+            var idd = document.URL.split("=");
+            var iid = idd[1].split("&");
+            var iscomp = idd[2];
+            var datass = iscomp.split("-");
+            var realId = iid[0];
+
+            var postData = JSON.parse(localStorage.getItem("token"));
+            var fullname = JSON.parse(localStorage.getItem("fullname"));
+
+    
+        
+            $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(addRobot){
+                
+                console.log(addRobot);
+                $("#details").append('<h1 style="color:#fff!important;">'+decodeURIComponent(datass[1])+'</h1><p style="color:#fff!important;">'+decodeURIComponent(datass[2])+'</p>');
+
+            });
+
+            $("#registerButton").click(function(){
+                var robotName = $("#robotName").val();
+                var CompanyName = $("#CompanyName").val();
+                var CityName = $("#CityName").val();
+
+                $.post("https://api.mekatrotekno.com/robots/join",
+                {
+                    token: postData,
+                    comp: datass[0],
+                    robot: robotName,
+                    school: CompanyName,
+                    city: CityName,
+                    accom: 0
+
+                },
+                 function(statuss){
+                    alert(statuss);
+                });
+
+            });
+
+        });
+    </script>
+</div>
+
+
+<div style="padding-top: 50px;"></div>
+<footer>
+    <div class="full">
+        <div class="row" style="padding-top: 5px;">
+            <div class="col-3-sm">
+                <a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Haberler</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="events.html" onclick="$(function() {$('html').fadeOut(2000);});" >
+                    <i class="fa fa-file-text-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-map-marker" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">İletişim</p>
+                </a>
+            </div>
+            <div class="col-3-sm">
+                <a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
+                    <i class="fa fa-user-o" style="font-size: 35px;"></i>
+                    <p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

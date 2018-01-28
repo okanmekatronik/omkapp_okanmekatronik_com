@@ -44,6 +44,7 @@
                         <div  id="cak"></div>
                         <p style="font-size:12px;"><br><br><br> Takım arkadaşları </p>
                         <div  id="cakk"></div>
+                        <div  id="cakk2"></div>
                         <div class="davet">
                                 <p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px; color:red; text-align:center;"><a id="Hloo" href="" style=" color:orange!important; text-align:center;"> Takım Daveti Gönder </a></p>
                         </div>
@@ -65,7 +66,7 @@
             var postData = JSON.parse(localStorage.getItem("token"));
             var fullname = JSON.parse(localStorage.getItem("fullname"));
 
-            $("#Hloo").attr("href", "qrscanner.html?id=" + iid);
+            
         
             $.post("https://api.mekatrotekno.com/competitions/info/"+iid ,{token: postData}, function(teamAddExit){
                 console.log(teamAddExit);
@@ -78,16 +79,43 @@
                 }else{
                     roler = "Davetli";
                 }
-                roler = "";
+
+                $("#Hloo").click(function(){
+                    var kullaniciadi = prompt("Kullanıcı Adı:", "kullanıcı adı...");
+                    var helloword = teamAddExit.team.id;
+                    //alert(kullaniciadi);
+                    $.post("https://api.mekatrotekno.com/team/invite", {token: postData, user: kullaniciadi,team_id: helloword}, function(sece){
+                        alert(sece);
+                    });
+                });
+
+                
                 if(teamAddExit.team == false){
+
+                    
                     
                 }else{
                     $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a>'+ teamAddExit.team.team +'</a></p>');
-                    $("#cakk").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a style="width=100%;"> '+ fullname +'  <span style="text-align:right;">'+roler+'</span> </a></p>');
+                    $("#cakk").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;"><a style="width=100%;"> '+ fullname +'  <span style="text-align:right;"> --> '+roler+'</span> </a></p>');
+                    
+                    var an = teamAddExit.team.members;
+                
+                    $.each(an, function(i, datasss){
+                        var rolee = "";
+                        if(datasss.role == 1){
+                            rolee = "Takım Lideri";
+                        }else if(datasss.role == 0){
+                            rolee = "Üye";
+                        }else{
+                            rolee = "Davetli";
+                        }
+                        $("#cakk2").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;width:100%;"><a style="width:100%;"> '+ datasss.fullname +'  <span style="width:100%;text-align:right;"> --> '+rolee+'</span> </a></p>');
+                    });
+
                     $(".exitt").click(function(){
                         var url = "events.html";    
                         $.post("https://api.mekatrotekno.com/team/exit/" ,{teamID: teamAddExit.team.id,token: postData}, function(datas){
-                            alert("Status: " + datas.status + " Text: " + datas.text)
+                            alert("Status: " + datas.status + " Text: " + datas.message)
                             $(location).attr('href',url);
                         })
                     });

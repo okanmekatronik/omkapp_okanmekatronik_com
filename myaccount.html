@@ -9,12 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="css/formalize.css">
 		<link rel="stylesheet" type="text/css" href="css/zerogrid.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<link rel="stylesheet" type="text/css" href="css/">
 		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<script src="js/wow.min.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
-		<script src="js/"></script>
 		<script src="js/index.js"></script>
 		<script src="js/qr.js"></script>
 		<title>Okan Mekatronik</title>
@@ -298,13 +296,16 @@
                         //alert(username + " " + password);
                         $.post("https://api.mekatrotekno.com/login/login",
                             {
+								project: "com.mehmet.okanMekatronik",
+								version: 2.0,
                                 username: username,
                                 password: password
                             },
                             function(data,status){
-                                //console.log(data);
+                                console.log(data);
                                 console.log(status + " Token");
                                 //localStorage.setItem("loginData", JSON.stringify(data));
+								//alert(data["token"]["token"]);
                                 localStorage.setItem("token", JSON.stringify(data["token"]["token"]));
 
                             });
@@ -328,7 +329,9 @@
 
                         $.post("https://api.mekatrotekno.com/login/info",
                             {
-                                token: OKEY
+                                token: OKEY,
+								project: "com.mehmet.okanMekatronik",
+								version: 2.0
                             },
                             function(dataa,status){
                                 //console.log(dataa);

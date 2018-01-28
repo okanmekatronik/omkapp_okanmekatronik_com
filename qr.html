@@ -65,7 +65,7 @@
         var username = JSON.parse(localStorage.getItem("username"));
         var qrcode = new QRCode("qrcode");
         function makeCode () {
-            qrcode.makeCode("okanmekatronik://"+ username +"/");
+            qrcode.makeCode("okanmekatronik://user/"+ username);
         } makeCode();
 
     });

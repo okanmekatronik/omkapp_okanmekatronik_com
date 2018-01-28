@@ -54,8 +54,8 @@
 
             <div class="row" id="takimInfo">
                         
-                    <p style="font-size:12px;"><br><br><br> Takım İsmi </p>
-                    <div  id="cak"></div>
+                    <p style="font-size:12px;"><br><br><br> Takım İsmi </p><div  id="cak"></div>
+                    <div id="cat"></div>
 
                     
             </div>
@@ -71,25 +71,55 @@
             var iid = idd[1].split("&");
             var iscomp = idd[2];
             var realId = iid[0];
+            var helol = "";
             var postData = JSON.parse(localStorage.getItem("token"));
             $.post("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
+                helol = result.event.title;
                     $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
+                    
             });
             if (iscomp == "true"){
                 $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(resulter){
                         console.log(resulter);
+                    
                         if(resulter.team == false){
                             $("#takimInfo").hide();
                             $("#TakimKur").click(function(){
                                 var takimIsmi = prompt("Takım İsmini giriniz", "Takım ismi");
                                 $.post("https://api.mekatrotekno.com/team/create",{token: postData, event_id: realId,teamname: takimIsmi}, function(createTeamer){
-                                    alert("Status: " + createTeamer.status + " Text: " + createTeamer.text);
+                                    alert("Status: " + createTeamer.status + " Text: " + createTeamer.message);
                                     location.reload();
                                 });
                             }); 
+
+                            if(resulter.invitations =! []){
+                                console.log(resulter.invitations);
+                                
+                            }
+
                         }else{
                             $("#gizle").hide();
                             $("#cak").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-left:20px; padding-top: 15px; padding-bottom: 15px;"><a href="team.html?id='+ realId +'">'+ resulter.team.team +'</a></p>');
+                            var categoriss = resulter.categories;
+                            var comps = resulter.comps;
+                            var ooo = "";
+                            $.each(categoriss, function(i, categoris){
+
+                                $.each(comps,function(iii, compses){
+
+                                    if(categoris.id == compses.cid){
+                                        oooo = 'İsim: ' + compses.name + ' <br> Durumu: ' + compses.status + '<br> Sahibi: ' + compses.owner_name;
+                                        ooo = '<p style="font-size: 16px;border-bottom: 1px solid #ddd; padding-left:20px; padding-top: 15px; padding-bottom: 15px;">  '+oooo+'   </p>';
+                                
+                                    }else{
+                                        ooo = "";
+                                    }
+
+                                    $("#cat").append('<p style="font-size:12px;"><br><br><br> '+categoris.text+' </p><p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-left:20px; padding-top: 15px; padding-bottom: 15px;"><a>'+ categoris.description +'</a></p>  '+ ooo +'  <p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px; color:red; text-align:center;"><a id="Hloo" href="competition.html?id='+ realId +'&iscomp='+ categoris.id +'-'+ helol +'-'+categoris.description+'" style=" color:orange!important; text-align:center;"> Kategoriye Katıl </a></p>');
+                                });
+                                
+                            });
+                        
                         }
                     });
             }
@@ -98,7 +128,7 @@
 </div>
 
 
-<div style="padding-top: 50px;"></div>
+<div style="padding-top: 100px;"></div>
 <footer>
     <div class="full">
         <div class="row" style="padding-top: 5px;">
