@@ -52,6 +52,10 @@
                         </center>
             </div>
 
+            <div class="row" id="invite">
+
+            </div>
+
             <div class="row" id="takimInfo">
                         
                     <p style="font-size:12px;"><br><br><br> Takım İsmi </p><div  id="cak"></div>
@@ -80,7 +84,7 @@
             });
             if (iscomp == "true"){
                 $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(resulter){
-                        console.log(resulter);
+                        //console.log(resulter);
                     
                         if(resulter.team == false){
                             $("#takimInfo").hide();
@@ -92,10 +96,26 @@
                                 });
                             }); 
                             
+                            var aaa = "";
+                            if(resulter.invitations != []){
+                                //console.log(resulter.invitations);
+                                aaa = resulter.invitations;
+                                var aaaa = JSON.stringify(aaa);
+                                var aaa1 = aaaa.split("[");
+                                var aaa2 = aaa1[1].split("]");
+                                var aaa3 = aaa2[0];
+                                var aaa4 = JSON.parse(aaa3); 
+                                $("#invite").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;" id="inviteba"> <input type="text" id="invitebainput" style="display: none;" value="'+ aaa4.id +'" disable> '+ aaa4.name +' </p>');
+                                $("#inviteba").click(function(){
+                                    var valll = $("#invitebainput").val();
+                                    //alert(valll);
 
-                            if(resulter.invitations =! []){
-                                console.log(resulter.invitations);
-                                
+                                    $.post("https://api.mekatrotekno.com/team/join", {id: valll, token: postData}, function(status){
+                                        location.reload();
+                                    });
+
+
+                                });
                             }
 
                         }else{
