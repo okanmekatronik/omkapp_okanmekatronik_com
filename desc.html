@@ -160,6 +160,8 @@
                             $("#etkinlikKatil").click(function(){
                                 $.post("https://api.mekatrotekno.com/events/register/" + realId, {token: postData}, function(datatus){
                                     console.log(datatus);
+                                    alert(datatus);
+                                    location.reload();
                                 });
                             });
                         }else{
