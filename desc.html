@@ -39,6 +39,8 @@
         <div class="full" id="actionsfeed"></div>
         <div class="full" id="action">
 
+            <div id="registerHello"></div>
+
             <div class="row" id="gizle">
                         <p style="font-size: 12px;">
                             Takım
@@ -78,13 +80,16 @@
             var helol = "";
             var postData = JSON.parse(localStorage.getItem("token"));
             $.post("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
+                //console.log(result);
                 helol = result.event.title;
                     $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
                     
             });
             if (iscomp == "true"){
+                $("#registerHello").hide();
+                    $("#etkinlikKatil").hide();
                 $.post("https://api.mekatrotekno.com/competitions/info/"+realId ,{token: postData}, function(resulter){
-                        //console.log(resulter);
+                        console.log(resulter);
                     
                         if(resulter.team == false){
                             $("#takimInfo").hide();
@@ -143,6 +148,26 @@
                         
                         }
                     });
+                    
+            }else{
+                $("#gizle").hide();
+                $("#takimInfo").hide();
+
+                $.post("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
+                    console.log(result);
+                        if(result.registered == 0){
+                            $("#registerHello").append("<center><a id='etkinlikKatil' > Etkinliğe Katıl </a></center>");
+                            $("#etkinlikKatil").click(function(){
+                                $.post("https://api.mekatrotekno.com/events/register/" + realId, {token: postData}, function(datatus){
+                                    console.log(datatus);
+                                });
+                            });
+                        }else{
+                            $("#registerHello").append("<center>Etkinliğe Katıldınız.</center>");
+                        }
+                        
+                });
+
             }
         });
     </script>
