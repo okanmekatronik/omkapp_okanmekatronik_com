@@ -122,7 +122,7 @@
 					<div class="full">
 						<div class="row bos35pt" style="border-bottom: 1px solid #ddd;">
 							<div class="col-3-sm">
-								<img class="logo-mmyaccount" src="img/logo.png" alt="">
+								<img class="logo-mmyaccount" src="img/logo2.png" alt="">
 							</div>
 							<div class="col-9-sm">
 								<p class="myaccount-name" id="fullname" style="text-transform: capitalize;"></p>
@@ -355,6 +355,10 @@
                     });
 
                     $("#Cikis").click(function () {
+						$.post("https://api.mekatrotekno.com/login/logout", {token: OKEY}, function(dataaaa){
+							console.log(dataaaa);
+							//alert(dataaaa);
+						});
                         localStorage.clear();
                         location.reload();
                     });
