@@ -19,10 +19,7 @@
 		<script src="js/freelanceZ.js"></script>
 		<title>Okan Mekatronik</title>
 	</head>
-	<body onload="$(function() {
-	    $('html').hide();
-	  $('html').fadeIn(2000);
-	});">
+	<body>
 
 		<div data-role="page" data-title="Haberler" data-quicklinks="true">
 			<header>
@@ -46,7 +43,7 @@
 
                     $.getJSON("https://api.mekatrotekno.com/announcements", function(result){
                         $.each(result, function(i, field){
-                            $("#newsfeed").append('<a class="wow bounceInLeft" data-wow-delay="0.1s" href="news.html?id='+ field.id +'" id="'+ field.id +'"><div class="row bos35" id="naber"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://api.mekatrotekno.com/imagestore/news/'+ field.image +'.png" alt=""> <p>'+ field.title +'</p> </div> </div> </div> </div> </a>');
+                            $("#newsfeed").append('<a class="wow bounceInLeft" data-wow-delay="0.1s" href="news.html?id='+ field.id +'" id="'+ field.id +'"><div class="row bos35" id="naber"> <div class="col-12"> <div class="borderRadius" > <div class="img"> <img class="indexImg" src="https://mtassetstore.ams3.digitaloceanspaces.com/imagestore/okanmekatronik/news/png/'+ field.image +'.png" alt=""> <p>'+ field.title +'</p> </div> </div> </div> </div> </a>');
                         });
                     });
 

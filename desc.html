@@ -17,10 +17,7 @@
     <script src="js/freelanceZ.js"></script>
     <title>Okan Mekatronik</title>
 </head>
-<body onload="$(function() {
-	    $('html').hide();
-	  $('html').fadeIn(2000);
-	});">
+<body>
 <div data-role="page" data-title="Etkinlikler Açıklama" data-quicklinks="true">
     <header>
         <div class="full">
@@ -60,7 +57,8 @@
 
             <div class="row" id="takimInfo">
                         
-                    <p style="font-size:12px;"><br><br><br> Takım İsmi </p><div  id="cak"></div>
+                    <p style="font-size:12px;"><br><br><br> Takım İsmi </p>
+                    <div  id="cak"></div>
                     <div id="cat"></div>
 
                     
@@ -70,7 +68,6 @@
     </section>
 
     <script>
-
         $(function() {
 
             var idd = document.URL.split("=");
@@ -82,7 +79,7 @@
             $.post("https://api.mekatrotekno.com/events/info/"+realId+"/", function(result){
                 //console.log(result);
                 helol = result.event.title;
-                    $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://api.mekatrotekno.com/imagestore/news/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
+                    $("#actionsfeed").append('<div class="row"style="padding-bottom: 15px;"><div class="col-2-sm"><img style="width: 100%;" src="https://mtassetstore.ams3.digitaloceanspaces.com/imagestore/okanmekatronik/news/png/'+ result.event.image +'.png" alt=""></div><div class="col-10-sm"> <h1>'+result.event.title+'</h1></div><div class="col-12"style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">Etkinlik Tarihi: '+result.event.date+' </div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;">Kayıt Bitiş Tarihi: '+result.event.registration_end+'</div><div class="col-12"style="border-bottom: 1px solid #ddd;  padding-bottom: 15px;"> Açıklama: '+result.event.text+'</div></div>\n');
                     
             });
             if (iscomp == "true"){
@@ -101,19 +98,20 @@
                                 });
                             }); 
                             
-                            var aaa = "";
+                            
                             if(resulter.invitations != []){
-                                //console.log(resulter.invitations);
-                                aaa = resulter.invitations;
+                                console.log(resulter.invitations);
+                                var aaa = resulter.invitations;
                                 var aaaa = JSON.stringify(aaa);
                                 var aaa1 = aaaa.split("[");
                                 var aaa2 = aaa1[1].split("]");
                                 var aaa3 = aaa2[0];
-                                var aaa4 = JSON.parse(aaa3); 
+                                var aaa4 = JSON.stringify(aaa3);
+                                alert(aaa4);
                                 $("#invite").append('<p style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;" id="inviteba"> <input type="text" id="invitebainput" style="display: none;" value="'+ aaa4.id +'" disable> '+ aaa4.name +' </p>');
                                 $("#inviteba").click(function(){
                                     var valll = $("#invitebainput").val();
-                                    //alert(valll);
+                                    alert(valll);
 
                                     $.post("https://api.mekatrotekno.com/team/join", {id: valll, token: postData}, function(status){
                                         location.reload();
@@ -129,9 +127,10 @@
                             var categoriss = resulter.categories;
                             var comps = resulter.comps;
                             var ooo = "";
+                            var compses = '';
                             $.each(categoriss, function(i, categoris){
 
-                                $.each(comps,function(iii, compses){
+                                $.each(comps, function(iii, compses){
 
                                     if(categoris.id == compses.cid){
                                         oooo = 'İsim: ' + compses.name + ' <br> Durumu: ' + compses.status + '<br> Sahibi: ' + compses.owner_name;
@@ -171,6 +170,8 @@
                 });
 
             }
+
+            
         });
     </script>
 </div>

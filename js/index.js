@@ -1,63 +1,46 @@
 /*
-$(function () {
-	$("[data-role='navbar']").navbar();
-	$("[data-role='header'], [data-role='footer']").toolbar();
-});
-// Update the contents of the toolbars
-$(document).on("pagecontainerchange", function () {
-	// Each of the four pages in this demo has a data-title attribute
-	// which value is equal to the text of the nav button
-	// For example, on first page: <div data-role="page" data-title="Info">
-	var current = $(".ui-page-active").jqmData("title");
-	// Change the heading
-	$("[data-role='header'] h1").text(current);
-	// Remove active class from nav buttons
-	$("[data-role='navbar'] a.ui-btn-active").removeClass("ui-btn-active");
-	// Add active class to current nav button
-	$("[data-role='navbar'] a").each(function () {
-		if ($(this).text() === current) {
-			$(this).addClass("ui-btn-active");
-		}
-	});
-});
-*/
-
-wow = new WOW(
-    {
-        boxClass: 'wow',
-        animateClass: 'animated',
-        offset: 0,
-        mobile: true,
-        live: true
-    }
-)
-wow.init();
-
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 var app = {
-	// Application Constructor
-	initialize: function () {
-		document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-	},
+    // Application Constructor
+    initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
 
-	// deviceready Event Handler
-	//
-	// Bind any cordova events here. Common events are:
-	// 'pause', 'resume', etc.
-	onDeviceReady: function () {
-		this.receivedEvent('deviceready');
-	},
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function() {
+        this.receivedEvent('deviceready');
+    },
 
-	// Update DOM on a Received Event
-	receivedEvent: function (id) {
-		var parentElement = document.getElementById(id);
-		var listeningElement = parentElement.querySelector('.listening');
-		var receivedElement = parentElement.querySelector('.received');
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
 
-		listeningElement.setAttribute('style', 'display:none;');
-		receivedElement.setAttribute('style', 'display:block;');
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
 
-		console.log('Received Event: ' + id);
-	}
+        console.log('Received Event: ' + id);
+    }
 };
 
 app.initialize();
