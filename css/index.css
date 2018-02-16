@@ -27,7 +27,7 @@ header{
 
 .headerTitle{
     color: #000;
-    font-size: 45px;
+    font-size: 35px;
 }
 
 #maps{
@@ -36,9 +36,9 @@ header{
 }
 
 #headerIcon{
-    font-size: 25px;
+    font-size: 20px;
     color: #000;
-    padding-top: 15px;
+    padding-top: 10px;
     text-align: right
 }
 
@@ -92,7 +92,7 @@ header{
     text-shadow: 2px 2px 15px rgba(0,0,0,1);
     font-weight: bolder;
     color: #fff;
-    font-size: 35px;
+    font-size: 25px;
     height: auto;
     bottom: 0;
     padding: 15px;
@@ -100,7 +100,7 @@ header{
 
 footer{
     width: 100%;
-    height: 75px;
+    height: 55px;
     position: fixed;
     bottom: 0;
     background-color: #fff;
@@ -110,8 +110,7 @@ footer{
 }
 
 #footerIcon{
-    font-size: 30px;
-    padding-top: 5px;
+    font-size: 20px;
 }
 
 .iconAciklama{

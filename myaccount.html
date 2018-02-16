@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="css/animate.css">
 		<script src="js/wow.min.js"></script>
 		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/verison.js"></script>
 		<script src="js/index.js"></script>
 		<script src="js/qr.js"></script>
 		<title>Okan Mekatronik</title>
@@ -52,6 +53,22 @@
 								<div class="col-12">
 									<button name="Login" id="LoginButton">Login</button>
 								</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="forgetPage" style="display: none">
+					<div class="full">
+						<div class="row bos35pt">
+							<div class="col-12">
+								<p style="font-size: 12px;">
+									Email
+								</p>
+								<input type="email" name="emailForget" id="emailForget" placeholder="Email">
+							</div>
+							<div class="col-12">
+								<button name="Forget" id="ForgetPassword">Reset Password</button>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -108,6 +125,11 @@
 								<p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
 									<a href="#" id="register">
 										Register
+									</a>
+								</p>
+								<p style="border-bottom: 1px solid #ddd; padding-top: 15px; padding-bottom: 15px;">
+									<a href="#" id="iforget">
+										Forget My Account
 									</a>
 								</p>
 							</center>
@@ -189,7 +211,7 @@
 						<div class="row">
 							<div class="col-12">
 								<div id="popupBasic">
-									<p style="padding-top: 10px; padding-bottom: 10px;padding-left: 10px;padding-right: 10px; font-size: 18px;">Okan Üniversitesi Mekatronik Kulübü tarafından ikinci kez düzenlenecek olan Robokan'17 Yarışması Dünyanın dört bir yanından öğrencilerin ve meraklıların katılabileceği bir uluslararası robot yarışmasıdır.</p>
+									<p style="padding-top: 10px; padding-bottom: 10px;padding-left: 10px;padding-right: 10px; font-size: 18px;">Okan Üniversitesi Mekatronik Kulübü tarafından ikinci kez düzenlenecek olan Robokan'18 Yarışması Dünyanın dört bir yanından öğrencilerin ve meraklıların katılabileceği bir uluslararası robot yarışmasıdır.</p>
 								</div>
 							</div>
 						</div>
@@ -268,6 +290,14 @@
                 });
 
 
+                $("#ForgetPassword").click(function(){
+					var forgetmail = $("#emailForget").val();
+					$.post("https://root.okanmekatronik.com/iforgot", {email: forgetmail}, function (data) {
+						alert("Şifreniz sıfırlandı yeni şifreniz eposta olarak gönderildi.");
+						location.reload();
+                    });
+                });
+
 
                 var OKEY = JSON.parse(localStorage.getItem("token"));
 
@@ -279,11 +309,19 @@
 
                     $("#login").click(function () {
                         $("#registerPage").hide();
+                        $("#forgetPage").hide();
                         $("#loginPage").show("slow");
+                    });
+
+                    $("#iforget").click(function () {
+                        $("#loginPage").hide();
+                        $("#registerPage").hide();
+                        $("#forgetPage").show("slow");
                     });
 
                     $("#register").click(function () {
                         $("#loginPage").hide();
+                        $("#forgetPage").hide();
                         $("#registerPage").show("slow");
                     });
 
@@ -394,32 +432,32 @@
                 appCache.update();
             }
 		</script>
-		<div style="padding-top: 50px;"></div>
+		<div style="padding-top: 100px;"></div>
 		<footer>
 			<div class="full">
 				<div class="row" style="padding-top: 5px;">
 					<div class="col-3-sm">
 						<a href="index.html" onclick="$(function() {$('html').fadeOut(2000);});">
-							<i class="fa fa-newspaper-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;padding-top: 5px;">Haberler</p>
+							<i class="fa fa-newspaper-o" style="font-size: 20px;"></i>
+							<p style="font-size: 12px;">Haberler</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
-						<a  href="events.html" onclick="$(function() {$('html').fadeOut(2000);});" >
-							<i class="fa fa-file-text-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;padding-top: 5px;">Etkinlikler</p>
+						<a  href="events.html"  onclick="$(function() {$('html').fadeOut(2000);});">
+							<i class="fa fa-file-text-o" style="font-size: 20px;"></i>
+							<p style="font-size: 12px;">Etkinlikler</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="contact.html"  onclick="$(function() {$('html').fadeOut(2000);});">
-							<i class="fa fa-map-marker" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;padding-top: 5px;">İletişim</p>
+							<i class="fa fa-map-marker" style="font-size: 20px;"></i>
+							<p style="font-size: 12px;">İletişim</p>
 						</a>
 					</div>
 					<div class="col-3-sm">
 						<a  href="myaccount.html" onclick="$(function() {$('html').fadeOut(2000);});">
-							<i class="fa fa-user-o" style="font-size: 35px;"></i>
-							<p style="font-size: 12px;padding-top: 5px;">Hesabım</p>
+							<i class="fa fa-user-o" style="font-size: 20px;"></i>
+							<p style="font-size: 12px;">Hesabım</p>
 						</a>
 					</div>
 				</div>
